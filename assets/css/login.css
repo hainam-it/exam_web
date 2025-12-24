@@ -1,0 +1,167 @@
+/* CSS riêng cho trang Login */
+
+.login-wrapper { 
+    min-height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+}
+
+.login-box-pro {
+    background: rgba(30, 41, 59, 0.7); 
+    backdrop-filter: blur(24px); 
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 24px; 
+    padding: 40px; 
+    width: 100%; 
+    max-width: 420px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+}
+
+.login-logo { 
+    font-size: 3rem; 
+    margin-bottom: 1rem; 
+    background: linear-gradient(135deg, #6366f1, #ec4899); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+.login-box-pro h2 { 
+    color: #fff; 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    margin-bottom: 0.5rem; 
+}
+
+.sub-text { 
+    color: #94a3b8; 
+    margin-bottom: 2.5rem; 
+    font-size: 0.95rem; 
+}
+
+.input-group-pro { 
+    position: relative; 
+    margin-bottom: 1.5rem; 
+    text-align: left; 
+}
+
+.input-group-pro label { 
+    display: block; 
+    color: #cbd5e1; 
+    font-size: 0.9rem; 
+    margin-bottom: 8px; 
+    font-weight: 500; 
+}
+
+.input-wrapper { 
+    position: relative; 
+}
+
+/* Icon bên trái (User/Lock) */
+.input-icon-left { 
+    position: absolute; 
+    left: 16px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: #64748b; 
+    font-size: 1.1rem; 
+    transition: 0.3s; 
+    z-index: 1; 
+}
+
+/* Icon con mắt bên phải */
+.toggle-password { 
+    position: absolute; 
+    right: 16px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: #64748b; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    z-index: 2; 
+    padding: 5px; 
+}
+
+.toggle-password:hover { 
+    color: #fff; 
+}
+
+.form-control-pro {
+    width: 100%; 
+    padding: 14px 45px 14px 45px; /* Chừa chỗ cho cả 2 icon */
+    background: rgba(15, 23, 42, 0.6); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px; 
+    color: #fff; 
+    font-size: 1rem; 
+    transition: all 0.3s ease;
+}
+
+.form-control-pro:focus { 
+    outline: none; 
+    border-color: #6366f1; 
+    background: rgba(15, 23, 42, 0.8); 
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15); 
+}
+
+.form-control-pro:focus ~ .input-icon-left { 
+    color: #6366f1; 
+}
+
+.btn-login-pro {
+    width: 100%; 
+    padding: 14px; 
+    border-radius: 12px; 
+    border: none; 
+    font-size: 1.1rem; 
+    font-weight: 700; 
+    color: white;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6); 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    margin-top: 10px;
+}
+
+.btn-login-pro:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 15px 30px -10px rgba(99, 102, 241, 0.7); 
+}
+
+.login-footer { 
+    margin-top: 2rem; 
+    font-size: 0.9rem; 
+    color: #94a3b8; 
+}
+
+.login-footer a { 
+    color: #818cf8; 
+    font-weight: 600; 
+    transition: 0.2s; 
+}
+
+.login-footer a:hover { 
+    color: #a5b4fc; 
+    text-decoration: underline; 
+}
+
+.alert { 
+    padding: 10px; 
+    border-radius: 8px; 
+    margin-bottom: 20px; 
+    font-size: 0.9rem; 
+}
+
+.alert-success { 
+    background: rgba(16, 185, 129, 0.2); 
+    color: #34d399; 
+    border: 1px solid rgba(16, 185, 129, 0.3); 
+}
+
+.alert-error { 
+    background: rgba(244, 63, 94, 0.2); 
+    color: #f43f5e; 
+    border: 1px solid rgba(244, 63, 94, 0.3); 
+}

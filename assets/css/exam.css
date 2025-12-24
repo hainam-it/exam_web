@@ -1,0 +1,319 @@
+/* assets/css/exam.css - Phiên bản KHÓA CỨNG (NO ANIMATION) */
+/* --- TỐI ƯU HÓA HIỆU NĂNG CỰC ĐẠI --- */
+/* Ghi đè lên body của style.css gốc */
+body {
+    /* Tắt hình nền gradient cầu kỳ */
+    background-image: none !important;
+    
+    /* Tắt chuyển động cực quang */
+    animation: none !important;
+    
+    /* Dùng một màu tối duy nhất (Deep Blue/Black) */
+    background-color: #0b1120 !important; 
+}
+
+/* ... Các code CSS cũ của exam.css ở dưới giữ nguyên ... */
+.exam-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- XỬ LÝ KHÓA FORM (QUAN TRỌNG NHẤT) --- */
+/* Ghi đè lên style.css gốc để card đứng im */
+.exam-layout .card {
+    background: #1e293b !important;       /* Nền màu đặc tối */
+    border: 1px solid #334155 !important; /* Viền tĩnh */
+    border-radius: 12px;
+    padding: 20px;
+    
+    /* KHÓA: Tắt mọi hiệu ứng chuyển động */
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+/* KHÓA: Khi di chuột vào cũng bắt buộc đứng im */
+.exam-layout .card:hover {
+    transform: none !important;
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    box-shadow: none !important;
+}
+
+/* Header trang thi */
+header {
+    background: #0f172a !important;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 2rem;
+}
+
+/* --- KHỐI CÂU HỎI (Phục vụ phân trang) --- */
+.question-block {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+    display: none; /* Ẩn mặc định */
+}
+.question-block.active-q {
+    display: block; /* Chỉ hiện khi được gọi */
+}
+
+.question-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* --- ĐÁP ÁN (TĨNH HOÀN TOÀN) --- */
+.answer-option {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: #0f172a; 
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: none !important; /* Tắt chuyển màu mượt */
+}
+
+/* Bỏ hover đổi màu nền, chỉ đổi con trỏ chuột */
+.answer-option:hover {
+    background: #0f172a; /* Giữ nguyên màu nền */
+    border-color: #334155; /* Giữ nguyên viền */
+}
+
+/* Chỉ đổi màu khi ĐÃ CHỌN (Checked) */
+.answer-option:has(input:checked) {
+    background: #312e81 !important; 
+    border-color: #6366f1 !important;
+    color: #fff !important;
+}
+
+.answer-option input {
+    margin-right: 15px;
+    accent-color: #6366f1;
+    transform: scale(1.2);
+}
+
+/* --- ĐỒNG HỒ & MAP --- */
+.timer-box {
+    background: #0f172a;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #6366f1;
+    margin-bottom: 20px;
+}
+
+.question-map {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.q-dot {
+    background: #334155;
+    color: #cbd5e1;
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: none !important;
+}
+
+/* Map hover nhẹ đổi màu (không đổi kích thước) */
+.q-dot:hover { background: #475569; color: #fff; }
+.q-dot.done { background: #6366f1; color: #fff; }
+
+/* Nút phân trang */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #334155;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .exam-layout { grid-template-columns: 1fr; }
+    .question-map { grid-template-columns: repeat(10, 1fr); }
+}
+/* --- XỬ LÝ ĐỒNG HỒ ĐI THEO MÀN HÌNH (STICKY) --- */
+.exam-sidebar {
+    position: -webkit-sticky; /* Cho Safari */
+    position: sticky;
+    top: 20px; /* Cách mép trên màn hình 20px */
+    z-index: 100; /* Luôn nổi lên trên */
+    align-self: start; /* Quan trọng: Giúp sticky hoạt động trong Grid */
+}
+
+/* Style cho nút Quay lại trên Header */
+.btn-back-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Nền trong suốt màu Indigo nhạt */
+    background: rgba(99, 102, 241, 0.1);
+    /* Viền mỏng màu Indigo */
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    /* Màu chữ xanh nhạt sáng hơn */
+    color: #c7d2fe;
+    
+    padding: 8px 16px;
+    border-radius: 10px; /* Bo góc mềm mại hơn */
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 20px;
+    
+    /* Hiệu ứng chuyển động mượt mà */
+    transition: all 0.3s ease;
+    text-decoration: none; /* Bỏ gạch chân nếu có */
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.btn-back-nav:hover {
+    /* Nền chuyển sang màu Indigo đặc */
+    background: #6366f1;
+    /* Viền sáng hơn */
+    border-color: #818cf8;
+    /* Chữ chuyển sang trắng tinh */
+    color: #ffffff;
+    /* Hiệu ứng phát sáng Neon nhẹ */
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    /* Nút nẩy lên nhẹ 1 chút */
+    transform: translateY(-2px);
+}
+
+/* Hiệu ứng khi bấm vào (Active) */
+.btn-back-nav:active {
+    transform: translateY(0); /* Trở về vị trí cũ khi click */
+    box-shadow: none;
+}
+/* --- CHỨC NĂNG CẮM CỜ (FLAG) --- */
+
+/* Nút cờ nằm bên phải câu hỏi */
+.btn-flag {
+    float: right; /* Đẩy sang phải */
+    color: #475569; /* Màu xám mặc định */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 5px;
+}
+
+/* Khi di chuột vào */
+.btn-flag:hover {
+    color: #ef4444;
+    transform: scale(1.1);
+}
+
+/* TRẠNG THÁI ĐÃ CẮM CỜ (ACTIVE) */
+.btn-flag.active {
+    color: #ef4444; /* Màu đỏ */
+    filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.5)); /* Phát sáng đỏ */
+}
+
+/* Ô số trên Map khi bị cắm cờ */
+.q-dot.flagged {
+    background-color: #ef4444 !important; /* Màu đỏ đè lên màu tím */
+    color: #fff !important;
+    border: 2px solid #fff; /* Thêm viền trắng để nổi bật */
+    animation: pulse 2s infinite; /* Hiệu ứng nhấp nháy nhẹ */
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* --- CUSTOM MODAL (POPUP XÁC NHẬN NỘP BÀI) --- */
+.modal-overlay {
+    display: none; /* Mặc định ẩn */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Nền đen mờ che phía sau */
+    z-index: 2000; /* Nổi lên trên cùng */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.custom-modal {
+    background: #1e293b;
+    border: 1px solid #6366f1; /* Viền tím */
+    width: 90%; max-width: 400px;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    animation: zoomIn 0.2s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon {
+    font-size: 3rem;
+    color: #f59e0b; /* Màu vàng cảnh báo */
+    margin-bottom: 15px;
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.modal-text {
+    color: #cbd5e1;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-cancel {
+    background: #334155;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.btn-cancel:hover { background: #475569; }
+
+.btn-confirm {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+.btn-confirm:hover { background: #059669; }

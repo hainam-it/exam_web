@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Palette màu Cyber/Modern */
+    --primary: #6366f1;       /* Indigo Neon */
+    --primary-glow: rgba(99, 102, 241, 0.5);
+    --secondary: #ec4899;     /* Pink Neon */
+    --accent: #8b5cf6;        /* Violet */
+    
+    --bg-dark: #0f172a;       /* Nền tối sâu */
+    --text-main: #f8fafc;     /* Chữ trắng sáng */
+    --text-light: #94a3b8;    /* Chữ xám bạc */
+    
+    --glass-bg: rgba(30, 41, 59, 0.7); /* Màu kính tối */
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shine: rgba(255, 255, 255, 0.03);
+    
+    --radius: 16px;
+    --sidebar-width: 260px; /* Biến chiều rộng sidebar */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+/* --- Animated Background "Aurora" --- */
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+    background-size: 200% 200%;
+    animation: aurora 15s ease infinite;
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+@keyframes aurora {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* --- QUAN TRỌNG: Layout System Đã Sửa Lỗi --- */
+/* Tách container thường và app-container ra để không bị xung đột */
+.container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+.app-container {
+    display: flex;       /* Dùng Flexbox để chia cột */
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;           /* Không margin auto */
+    padding: 0;
+}
+
+/* --- Sidebar (Cố định trái) --- */
+.sidebar {
+    width: var(--sidebar-width) !important;
+    min-width: var(--sidebar-width) !important;
+    height: 100vh;
+    position: fixed;
+    left: 0; top: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    z-index: 1000;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Nội dung chính (Đẩy sang phải) --- */
+.main-content {
+    margin-left: var(--sidebar-width) !important; /* Đẩy nội dung sang phải */
+    width: calc(100% - var(--sidebar-width)) !important;
+    padding: 2rem 3rem;
+    flex: 1;
+    position: relative;
+}
+
+/* --- Typography & Logo --- */
+.brand {
+    font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 2rem;
+    background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+    display: flex; align-items: center; gap: 10px;
+}
+h1, h2, h3 { color: #fff; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 1rem; }
+p { color: var(--text-light); line-height: 1.6; }
+
+/* --- Menu Items --- */
+.menu-item {
+    color: var(--text-light); padding: 12px 16px; margin-bottom: 8px;
+    border-radius: 12px; border: 1px solid transparent; transition: var(--transition);
+    display: flex; align-items: center; gap: 12px;
+}
+.menu-item:hover, .menu-item.active {
+    background: rgba(99, 102, 241, 0.1); color: #fff;
+    border-color: rgba(99, 102, 241, 0.2); box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+}
+
+/* --- Cards --- */
+.card {
+    background: var(--glass-bg); backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border); border-top: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius); padding: 2rem;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); position: relative; overflow: hidden;
+    transition: var(--transition);
+}
+.card:hover { 
+    transform: translateY(-5px) scale(1.01); 
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+/* --- Forms --- */
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { color: var(--text-light); font-size: 0.9rem; margin-bottom: 8px; display: block; }
+.form-control {
+    width: 100%; padding: 14px 16px; background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border); color: #fff; border-radius: 12px;
+    font-size: 1rem; transition: var(--transition);
+}
+.form-control:focus {
+    outline: none; border-color: var(--primary); background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 12px 28px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
+    border: none; cursor: pointer; transition: var(--transition);
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--accent)); color: white;
+    box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+.btn-primary:hover {
+    box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6); transform: translateY(-2px);
+}
+
+/* --- Table --- */
+.table-container { background: rgba(0, 0, 0, 0.2); border-radius: var(--radius); border: 1px solid var(--glass-border); overflow: hidden; }
+table { width: 100%; border-collapse: collapse; color: var(--text-light); }
+th { background: rgba(255, 255, 255, 0.05); color: #fff; padding: 18px; text-align: left; border-bottom: 1px solid var(--glass-border); }
+td { padding: 18px; border-bottom: 1px solid var(--glass-border); }
+tr:hover td { background: rgba(255, 255, 255, 0.03); color: #fff; }
+
+/* --- Utils --- */
+.status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+.status-active { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.sidebar .user-info { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--glass-border); display: flex; align-items: center; gap: 10px; color: var(--text-light); }
+.avatar { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: 0.3s; }
+    .main-content { margin-left: 0 !important; width: 100% !important; padding: 1rem; }
+}
+
+/* --- Login Page --- */
+/* --- Login Page (Dark Mode Fix) --- */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent; /* Để lộ hình nền Aurora phía sau */
+    padding: 20px;
+}
+
+.login-box {
+    /* Nền tối trong suốt thay vì trắng */
+    background: rgba(15, 23, 42, 0.6) !important; 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Viền phát sáng nhẹ */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem;
+    border-radius: 24px; /* Bo góc tròn hơn */
+}
+
+/* Chỉnh màu chữ tiêu đề */
+.brand-title h2, .login-box h2 {
+    color: #fff !important;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.5); /* Hiệu ứng neon cho chữ */
+    margin-bottom: 0.5rem;
+}
+
+.brand-title p, .login-box p {
+    color: #94a3b8 !important; /* Màu xám bạc dễ đọc */
+}
+
+/* Chỉnh ô nhập liệu (Input) cho tối đi */
+.login-box input[type="text"], 
+.login-box input[type="password"] {
+    background: rgba(0, 0, 0, 0.3) !important; /* Nền đen mờ */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important; /* Chữ khi gõ màu trắng */
+    border-radius: 12px;
+    padding: 14px;
+}
+
+/* Khi bấm vào ô nhập liệu thì sáng lên */
+.login-box input:focus {
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Nút checkbox & link quên mật khẩu */
+.login-box label { color: #cbd5e1; }
+.login-box a { color: var(--primary); font-weight: 600; transition: 0.3s; }
+.login-box a:hover { color: var(--secondary); text-shadow: 0 0 10px var(--secondary); }
+
