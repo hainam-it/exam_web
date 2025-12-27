@@ -11,6 +11,16 @@ if ($_SESSION['role'] !== 'teacher') {
 // Thống kê dữ liệu
 $my_questions = $conn->query("SELECT COUNT(*) FROM questions")->fetchColumn();
 $recent_results = $conn->query("SELECT COUNT(*) FROM results")->fetchColumn();
+
+
+// 3. Top 5 sinh viên điểm cao nhất
+$top_students = $conn->query("
+    SELECT u.fullname, e.title, r.score 
+    FROM results r 
+    JOIN users u ON r.user_id = u.id 
+    JOIN exams e ON r.exam_id = e.id 
+    ORDER BY r.score DESC LIMIT 5
+")->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +29,23 @@ $recent_results = $conn->query("SELECT COUNT(*) FROM results")->fetchColumn();
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/exam_web/assets/css/style.css">
+    <style>
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Table Style */
+        .leaderboard-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+        .leaderboard-table td { padding: 12px; background: rgba(255,255,255,0.03); }
+        .leaderboard-table tr:hover td { background: rgba(255,255,255,0.08); }
+        .leaderboard-table td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+        .leaderboard-table td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -65,6 +92,30 @@ $recent_results = $conn->query("SELECT COUNT(*) FROM results")->fetchColumn();
                     <div style="font-weight: 700; margin-bottom: 10px; color: var(--primary); font-size: 1.1rem;">Bước 3</div>
                     <p style="font-size: 0.9rem;">Sinh viên thi xong, xem điểm tại mục <b>Chấm điểm</b>.</p>
                 </div>
+            </div>
+            <br>
+            <div class="glass-card">
+                <table class="leaderboard-table">
+                    <?php foreach($top_students as $idx => $s): ?>
+                    <tr>
+                        <td style="text-align: center; width: 50px;">
+                            <?php 
+                                if($idx==0) echo '🥇'; 
+                                elseif($idx==1) echo '🥈'; 
+                                elseif($idx==2) echo '🥉'; 
+                                else echo '<span style="color:#64748b; font-weight:bold">'.($idx+1).'</span>'; 
+                            ?>
+                        </td>
+                        <td>
+                            <div style="font-weight: 600; color: #fff;"><?php echo $s['fullname']; ?></div>
+                            <div style="font-size: 0.85rem; color: #94a3b8;">Đề: <?php echo $s['title']; ?></div>
+                        </td>
+                        <td style="text-align: right; width: 100px;">
+                            <span style="font-weight: 800; font-size: 1.1rem; color: #34d399;"><?php echo $s['score']; ?></span>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </table>
             </div>
         </main>
     </div>

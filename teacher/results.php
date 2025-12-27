@@ -40,7 +40,14 @@ $results = $conn->query($sql)->fetchAll();
         <?php include '../includes/sidebar.php'; ?>
 
         <main class="main-content">
-            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="margin: 0;"><i class="fa-solid fa-trophy" style="color: #facc15;"></i> Bảng vàng thành tích</h3>
+                    <?php if(file_exists('export_results.php')): ?>
+                        <a href="export_results.php" class="btn" style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 0.85rem; border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-download"></i> Xuất Excel
+                        </a>
+                    <?php endif; ?>
+            </div>
             <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
                 <a href="dashboard.php" class="btn-back" title="Quay lại Dashboard">
                     <i class="fa-solid fa-arrow-left"></i>

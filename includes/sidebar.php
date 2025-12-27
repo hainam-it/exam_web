@@ -25,16 +25,11 @@
             </a>
         <?php endif; ?>
 
-        <?php if ($_SESSION['role'] == 'teacher'): ?>
-            <a href="../teacher/dashboard.php" class="menu-item <?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">
-                <i class="fa-solid fa-chalkboard-user"></i> Dashboard
-            </a>
-            <a href="../teacher/questions.php" class="menu-item <?php echo $current_page == 'questions.php' ? 'active' : ''; ?>">
-                <i class="fa-solid fa-database"></i> Ngân hàng câu hỏi
-            </a>
-            <a href="../teacher/results.php" class="menu-item <?php echo $current_page == 'results.php' ? 'active' : ''; ?>">
-                <i class="fa-solid fa-list-check"></i> Chấm điểm & Xem điểm
-            </a>
+        <?php if($_SESSION['role'] == 'teacher'): ?>
+            <a href="../teacher/dashboard.php" class="menu-item"><i class="fa-solid fa-gauge"></i> Tổng quan</a>
+            <a href="../teacher/exams.php" class="menu-item"><i class="fa-solid fa-file-lines"></i> Quản lý Đề thi</a>
+            <a href="../teacher/questions.php" class="menu-item"><i class="fa-solid fa-circle-question"></i> Ngân hàng câu hỏi</a>
+            <a href="../teacher/results.php" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Kết quả thi</a>
         <?php endif; ?>
 
         <?php if ($_SESSION['role'] == 'admin'): ?>
@@ -47,6 +42,7 @@
             <a href="../admin/exams.php" class="menu-item <?php echo $current_page == 'exams.php' ? 'active' : ''; ?>">
                 <i class="fa-solid fa-folder-open"></i> Quản lý đề thi
             </a>
+            <a href="../admin/results.php" class="menu-item"><i class="fa-solid fa-chart-bar"></i> Kết quả thi</a>
             <a href="../admin/settings.php" class="menu-item <?php echo $current_page == 'settings.php' ? 'active' : ''; ?>">
                 <i class="fa-solid fa-gear"></i> Cài đặt hệ thống
             </a>

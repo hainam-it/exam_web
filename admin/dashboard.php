@@ -73,7 +73,7 @@ $top_students = $conn->query("
                     <div style="height: 250px;">
                         <canvas id="barChart"></canvas>
                     </div>
-                </div>
+                </div><br>
 
                 <div class="glass-card">
                     <h3 style="margin-bottom: 15px; font-size: 1.1rem; color: #e2e8f0;">
