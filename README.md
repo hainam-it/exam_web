@@ -10,18 +10,18 @@ Backend: PHP (Native/Thuần) - Mô hình MVC cơ bản.
 
 Database: MySQL.
 
-Frontend: HTML5, CSS3 (CSS Variables cho Dark Mode), JavaScript (Vanilla + AJAX).
+Frontend: HTML5, CSS3, JavaScript (Vanilla + AJAX).
 
 Libraries: SweetAlert2 (Thông báo), FontAwesome (Icons).
 
 3. Tính năng nổi bật (Highlight)
 
-🌓 Dark/Light Mode: Giao diện thích ứng theo sở thích người dùng.
-
 📝 Smart Import: Nhập câu hỏi từ file Word (.docx) tự động nhận diện đáp án đúng.
 
-⚡ Real-time Timer: Bộ đếm ngược thời gian làm bài, tự động thu bài.
+⚡ Real-time Timer: Bộ đếm ngược thời gian làm bài, tự động thu bài khi hết giờ.
 
-📊 Auto Grading: Chấm điểm và trả kết quả ngay lập tức.
+📊 Auto Grading: Chấm điểm tự động và trả kết quả ngay lập tức sau khi nộp.
 
-🔒 Role-based Security: Phân quyền chặt chẽ (Admin, Teacher, Student).
+🔒 Role-based Security: Phân quyền chặt chẽ 3 vai trò (Admin, Teacher, Student).
+
+📱 Responsive: Giao diện tương thích tốt với cả máy tính và điện thoại.
